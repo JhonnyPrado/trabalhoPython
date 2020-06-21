@@ -1,6 +1,5 @@
 import psycopg2
 
-
 class Fornecedor:
 
     def __init__(self):
@@ -17,6 +16,13 @@ class Fornecedor:
         cursor.execute(
             'update fornecedor set nome = %s where id = %s', (nome, id))
         self.connection.commit()
+
+    def excluir_fornecedor(self, id):
+        #print(id)
+        cursor = self.connection.cursor()        
+        cursor.execute(
+            f"delete from fornecedor where id = '{id}'")
+        self.connection.commit()        
 
     def buscar_fornecedores(self):
         cursor = self.connection.cursor()
